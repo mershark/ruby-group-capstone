@@ -125,7 +125,7 @@ ruby main.rb
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/mershark/oop-school-library/issues).
+Feel free to check the [issues page](https://github.com/mershark/ruby-group-capstone/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
