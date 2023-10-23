@@ -105,7 +105,7 @@ ruby main.rb
 - GitHub: [@githubhandle](https://github.com/mershark)
 - LinkedIn: [Profile link](https://www.linkedin.com/in/mershark/)
 
-👤👤 Fatuma Hussein
+👤 **Fatuma Hussein**
 
 - GitHub: [@fatmahussein](https://github.com/fatmahussein)
 
