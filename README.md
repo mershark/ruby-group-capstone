@@ -108,6 +108,7 @@ ruby main.rb
 👤 **Fatuma Hussein**
 
 - GitHub: [@fatmahussein](https://github.com/fatmahussein)
+- LinkedIn: [Fatmahussein](https://www.linkedin.com/in/fatmahusseinhassan/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
