@@ -9,7 +9,7 @@ class Item
     @label = label
     @source = source
     @publish_date = publish_date
-    @archived = archived
+    @archived = false
     @id = Random.rand(1..1000)
   end
 
