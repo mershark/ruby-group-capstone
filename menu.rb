@@ -23,7 +23,7 @@ end
 def handle_option(option, response)
   actions = {
     1 => :list_books,
-    2 => :list_music_albums,
+    2 => :list_all_music_albums,
     3 => :list_movies,
     4 => :list_games,
     5 => :list_genres,

@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": 874,
+    "publish_date": "2020-11-11",
+    "on_spotify": "false"
+  },
+  {
+    "id": 761,
+    "publish_date": "2020-11-11",
+    "on_spotify": "false"
+  },
+  {
+    "id": 128,
+    "publish_date": "1992-02-11",
+    "on_spotify": "true"
+  }
+]
