@@ -38,8 +38,6 @@ module JsonStorage
   def create_book_from_data(data)
     Book.new(
       data['id'],
-      data['title'],
-      data['author'],
       data['publish_date'],
       data['publisher'],
       data['cover_state'],

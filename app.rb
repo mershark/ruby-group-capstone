@@ -38,7 +38,7 @@ class App
       puts "Color: #{label.color}"
       puts 'Items: '
       label.items.each do |item|
-        puts "  Title: #{item.title}"
+        puts "  Title: #{item.publisher}"
         puts "  ID: #{item.id}"
       end
       puts '--------'
@@ -47,10 +47,6 @@ class App
 
   def add_book
     puts 'Adding a book:'
-    puts 'Enter the title: '
-    title = gets.chomp
-    puts 'Enter the author:'
-    author = gets.chomp
     puts 'Enter the publisher: '
     publisher = gets.chomp
     puts 'Enter the cover state (e.g., good, bad): '
@@ -61,9 +57,9 @@ class App
     book_id = rand(1000)
 
     # Create a new book instance
-    new_book = Book.new(book_id, title, author, publish_date, publisher, cover_state, archived: false)
+    new_book = Book.new(book_id, publish_date, publisher, cover_state, archived: false)
 
-    label = ::Label.new('Fiction', 'blue', 'red')
+    label = ::Label.new('New', 'Gift', 'red')
     label.add_item(new_book)
 
     # Add the new book to the collection
