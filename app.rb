@@ -22,8 +22,11 @@ class App
   end
 
   def list_all_music_albums
-    puts 'Listing all music albums:'
-    # Implement code to list music albums here
+    puts 'No music added' if @albums.empty?
+    @albums.each do |album|
+      puts "Publish date: #{album.publish_date}, On spotify: #{album.on_spotify}"
+    end
+    puts ''
   end
 
   def add_music_album
