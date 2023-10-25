@@ -2,15 +2,18 @@ require_relative 'game'
 require_relative 'author'
 require_relative 'item'
 require 'json'
+require_relative 'classes/movie'
+require_relative 'classes/source'
 
 class App
   def initialize
     @books = []
     @music_albums = []
-    @movies = []
+    @movies = load_movies || []
     @games = []
     @authors = []
     load_data
+  
   end
 
   def list_books
@@ -35,11 +38,14 @@ class App
 
   def list_movies
     puts 'Listing all movies:'
-    # Implement code to list movies here
+    @movies.each_with_index do |movie, index|
+      puts "#{index + 1}. Genre #{movie.genre}, Author: #{movie.author}, Release Date: #{movie.publish_date}, "
+    end
+    puts ''
   end
 
   def add_movie
-    puts 'add a  movie:'
+    puts 'Adding a movie:'
     # Implement code to add a movie here
   end
 
@@ -137,5 +143,39 @@ class App
     puts 'Goodbye!'
 
     exit
+  end
+
+  private
+
+  def save_movies
+    data = @movies.map(&:to_h)
+    File.write('json/movies.json', JSON.dump(data))
+  end
+
+  def load_movies
+    return unless File.exist?('json/movies.json')
+
+    data = JSON.parse(File.read('json/movies.json'))
+    data.map do |movie_data|
+      Movie.new(
+        movie_data['genre'],
+        movie_data['author'],
+        movie_data['label'],
+        movie_data['source'],
+        movie_data['publish_date']
+      )
+    end
+  end
+
+  def save_sources
+    data = @sources.map(&:to_h)
+    File.write('json/sources.json', JSON.dump(data))
+  end
+
+  def load_sources
+    return unless File.exist?('json/sources.json')
+
+    data = JSON.parse(File.read('json/sources.json'))
+    data.map { |source_data| Source.new(source_data['name']) }
   end
 end

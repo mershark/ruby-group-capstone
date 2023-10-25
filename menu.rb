@@ -18,6 +18,7 @@ def display_menu
   options.each do |index, string|
     puts "#{index} - #{string}"
   end
+  puts ''
 end
 
 def handle_option(option, response)
