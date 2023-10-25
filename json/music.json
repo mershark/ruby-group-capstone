@@ -1,27 +1,32 @@
 [
   {
-    "id": 923,
+    "id": 380,
     "publish_date": "2020-11-11",
     "on_spotify": "false"
   },
   {
-    "id": 131,
+    "id": 212,
     "publish_date": "2020-11-11",
     "on_spotify": "false"
   },
   {
-    "id": 349,
+    "id": 803,
     "publish_date": "1992-02-11",
     "on_spotify": "true"
   },
   {
-    "id": 595,
+    "id": 77,
     "publish_date": "1980-04-23",
     "on_spotify": "true"
   },
   {
-    "id": 698,
+    "id": 355,
     "publish_date": "2010-10-12",
+    "on_spotify": "true"
+  },
+  {
+    "id": 795,
+    "publish_date": "1000-12-12",
     "on_spotify": "true"
   }
 ]

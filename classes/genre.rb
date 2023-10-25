@@ -3,7 +3,6 @@ class Genre
   attr_accessor :name, :items
 
   def initialize(name, id: Random.rand(1..1000))
-    super()
     @id = id
     @name = name
     @items = []
@@ -11,6 +10,6 @@ class Genre
 
   def add_item(item)
     @items << item
-    item.genre = self
+    item.genre = self # Ensure you set the genre of the item
   end
 end
