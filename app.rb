@@ -1,6 +1,7 @@
 require 'json'
 
 class App
+  attr_accessor :albums, :genres
   def initialize
     # Initialize collections for various item types
     @books = []
