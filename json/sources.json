@@ -1,15 +1,1 @@
-[
-  {
-    "name": "Lookmovie2.to",
-    "items": [
-      {
-        "genre": "Drama",
-        "author": "John Smith",
-        "label": "Movie label",
-        "source": "Lookmovie2.to",
-        "publish_date": "2021-02-01",
-        "silent": false
-      }
-    ]
-  }
-]
+[{"name":"Lookmovie2.to","items":[]},{"name":"Ghana","items":[{"genre":"Action","author":"Kwaku Sarfo","label":"Uk","source":"Ghana","publish_date":"2012-02-26","silent":true}]}]
