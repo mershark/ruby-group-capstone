@@ -13,7 +13,6 @@ class App
     @games = []
     @authors = []
     load_data
-  
   end
 
   def list_books
