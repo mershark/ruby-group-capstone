@@ -30,8 +30,23 @@ class App
   end
 
   def add_music_album
-    puts 'Adding a music album:'
-    # Implement code to add a music album here
+    print 'Publish date (Year-MM-DD): '
+    publish_date = gets.chomp
+    print 'On spotify (true,false): '
+    on_spotify = gets.chomp
+
+    music_album = MusicAlbum.new(on_spotify, publish_date)
+    @albums << music_album
+    puts 'Album created successfully'
+    puts ''
+
+    print 'Add genre (Comedy, Horror): '
+    name = gets.chomp
+    @genres << Genre.new(name)
+    puts "#{name} genre created successfully"
+    puts ''
+    save
+    save_genre
   end
 
   def list_movies
