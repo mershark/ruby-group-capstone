@@ -29,10 +29,12 @@ class Item
     }
   end
 
+
   private
 
   def can_be_archived?
     publish_date = Date.parse(@publish_date)
     (Date.today.year - publish_date.year) >= 10
+
   end
 end
