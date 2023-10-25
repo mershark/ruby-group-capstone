@@ -8,7 +8,6 @@ class MusicAlbum < Item
     @on_spotify = on_spotify
     @id = Random.rand(1..1000)
   end
-  
 
   def can_be_archived?
     super && on_spotify == true

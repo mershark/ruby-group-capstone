@@ -4,12 +4,13 @@ require_relative 'classes/genre'
 
 class App
   attr_accessor :albums, :genres
+
   def initialize
     # Initialize collections for various item types
     @books = []
-    @albums =  []
-    @genres =  [] 
-    @movies = [] 
+    @albums = []
+    @genres = []
+    @movies = []
     @games = []
     recover_genre
     recover_album
@@ -53,7 +54,6 @@ class App
     save_genre
   end
 
-
   def list_genres
     puts 'No genre added' if @genres.empty?
     @genres.each { |genre| puts "Genre:  #{genre.name}" }
@@ -66,7 +66,6 @@ class App
     end
     File.write('json/music.json', JSON.pretty_generate(albums))
   end
-  
 
   def recover_album
     return unless File.exist?('json/music.json')
@@ -79,7 +78,6 @@ class App
     album_load = album_store.map { |music| MusicAlbum.new(music['on_spotify'], music['publish_date']) }
     @albums.concat(album_load) unless album_load.empty?
   end
-
 
   def save_genre
     genres = @genres.map { |genre| { name: genre.name } }
@@ -97,19 +95,6 @@ class App
     genre_load = genre_store.map { |genre| Genre.new(genre['name']) }
     @genres.concat(genre_load) unless genre_load.empty?
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   def list_movies
     puts 'Listing all movies:'
