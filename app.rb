@@ -113,6 +113,7 @@ class App
     end
   end
 
+  # save games to database
   def save_games
     update_games = []
     @games.each do |game|
@@ -123,6 +124,7 @@ class App
     File.write('json/games.json', JSON.generate(update_games))
   end
 
+  # save authors to the database
   def save_authors
     authors_data = @authors.map do |author|
       { 'id' => author.id, 'first_name' => author.first_name, 'last_name' => author.last_name }
