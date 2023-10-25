@@ -6,7 +6,6 @@ require 'json'
 
 class App
   def initialize
-    # Initialize collections for various item types
     @books = []
     @music_albums = []
     @movies = []
@@ -41,7 +40,7 @@ class App
   end
 
   def add_movie
-    puts 'Adding a movie:'
+    puts 'add a  movie:'
     # Implement code to add a movie here
   end
 
@@ -66,7 +65,8 @@ class App
     game = Game.new(publish_date, archived, multiplayer, last_played_at, author)
     @games << game
     @authors << author # Add the new author to the authors array
-
+    save_games
+    save_authors
     puts 'Game added successfully!'
   end
 
@@ -81,7 +81,14 @@ class App
     end
   end
 
-  # Preserve data
+  def list_authors
+    puts 'Listing authors...'
+    @authors.each do |author|
+      puts "ID: #{author.id}, Name: #{author.first_name} #{author.last_name}"
+    end
+  end
+
+  # # Preserve data
   def get_data(file_name)
     if File.exist?("json/#{file_name}.json")
       File.read("json/#{file_name}.json")
@@ -92,19 +99,22 @@ class App
     end
   end
 
-  # load data
+  # # load data
   def load_data
     games = JSON.parse(get_data('games'))
+    authors = JSON.parse(get_data('authors'))
 
     games.each do |game|
       @games << Game.new(game['publish_date'], game['archived'], game['multiplayer'], game['last_played_at'],
                          game['author'])
     end
+
+    authors.each do |author|
+      @authors << Author.new(author['id'], author['name'])
+    end
   end
 
-  def exit_app
-    puts 'Exiting the Catalog App. Goodbye!'
-
+  def save_games
     update_games = []
     @games.each do |game|
       update_games << { 'publish_date' => game.publish_date, 'archived' => game.archived,
@@ -112,6 +122,19 @@ class App
     end
 
     File.write('json/games.json', JSON.generate(update_games))
+  end
+
+  def save_authors
+    authors_data = @authors.map do |author|
+      { 'id' => author.id, 'first_name' => author.first_name, 'last_name' => author.last_name }
+    end
+
+    File.write('json/authors.json', JSON.generate(authors_data))
+  end
+
+  def exit_app
+    puts 'Goodbye!'
+
     exit
   end
 end
