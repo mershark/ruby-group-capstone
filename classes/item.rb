@@ -24,7 +24,7 @@ class Item
       genre: @genre,
       author: @author,
       label: @label,
-      source: @source.name, # Assuming you want to store the source name in the item
+      source: @source.name,
       publish_date: @publish_date
     }
   end
