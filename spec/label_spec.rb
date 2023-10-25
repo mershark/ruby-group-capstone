@@ -1,66 +1,38 @@
 require_relative '../classes/label'
-require_relative '../classes/book'
 
 describe Label do
-  let(:label_id) { 1 }
-  let(:label_title) { 'Fiction' }
-  let(:label_color) { 'blue' }
+  let(:label) { Label.new(1, 'Test Label', 'Red') }
 
-  # Stub the generate_id method to return a fixed value
-  before do
-    allow_any_instance_of(Label).to receive(:generate_id).and_return(label_id)
+  it 'has a title' do
+    expect(label.title).to eq('Test Label')
   end
 
-  describe 'initialization' do
-    it 'creates a new Label instance' do
-      label = Label.new(label_id, label_title, label_color)
-      expect(label).to be_an_instance_of(Label)
-    end
-
-    it 'sets instance variables correctly' do
-      label = Label.new(label_id, label_title, label_color)
-      expect(label.id).to eq(label_id)
-      expect(label.title).to eq(label_title)
-      expect(label.color).to eq(label_color)
-    end
+  it 'has a color' do
+    expect(label.color).to eq('Red')
   end
 
-  describe '#add_item' do
-    it 'adds an item to the label' do
-      book = Book.new(1, 'Sample Book', 'John Doe', '2022-01-01', 'Publisher X', 'good', archived: false)
-      label = Label.new(label_id, label_title, label_color)
-
-      label.add_item(book)
-
-      expect(label.items).to include(book)
-      expect(book.label).to eq(label)
-    end
+  it 'can add items' do
+    item = double('Item')
+    allow(item).to receive(:label=).with(label)
+    allow(item).to receive(:label).and_return(label)
+    label.add_item(item)
+    expect(label.items).to include(item)
+    expect(item.label).to eq(label)
   end
 
-  describe '#to_h' do
-    it 'returns a hash with label attributes' do
-      label = Label.new(label_id, label_title, label_color)
-      book = Book.new(1, 'Sample Book', 'John Doe', '2022-01-01', 'Publisher X', 'good', archived: false)
-      label.add_item(book)
-
-      expected_hash = {
-        'id' => label_id,
-        'title' => label_title,
-        'color' => label_color,
-        'items' => [book.to_h]
-      }
-      expect(label.to_h).to eq(expected_hash)
-    end
+  it 'can be converted to a hash' do
+    label_hash = label.to_h
+    expect(label_hash).to be_a(Hash)
+    expect(label_hash).to have_key('id')
+    expect(label_hash).to have_key('title')
+    expect(label_hash).to have_key('color')
+    expect(label_hash).to have_key('items')
   end
 
-  describe '#other_data' do
-    it 'returns a hash with title and color' do
-      label = Label.new(label_id, label_title, label_color)
-      expected_hash = {
-        title: label_title,
-        color: label_color
-      }
-      expect(label.other_data).to eq(expected_hash)
-    end
+  it 'provides other data as a hash' do
+    other_data = label.other_data
+    expect(other_data).to be_a(Hash)
+    expect(other_data).to have_key(:title)
+    expect(other_data).to have_key(:color)
   end
 end

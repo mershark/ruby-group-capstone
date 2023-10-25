@@ -3,7 +3,6 @@ class Label
   attr_accessor :items
 
   def initialize(_id, title, color)
-    @id = generate_id
     @title = title
     @color = color
     @items = []
@@ -28,11 +27,5 @@ class Label
       title: @title,
       color: @color
     }
-  end
-
-  private
-
-  def generate_id
-    rand(1..1000)
   end
 end

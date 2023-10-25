@@ -20,7 +20,6 @@ describe JsonStorage do
       {
         'id' => 1,
         'title' => 'Book 1',
-        'author' => 'Author 1',
         'publish_date' => '2022-01-01',
         'publisher' => 'Publisher 1',
         'cover_state' => 'good',
@@ -32,8 +31,11 @@ describe JsonStorage do
 
   describe '#save_to_json' do
     it 'saves books and labels to JSON files' do
-      json_storage.books = [Book.new(1, 'Book 1', 'Author 1', '2022-01-01', 'Publisher 1', 'good')]
-      json_storage.labels = [Label.new(1, 'Label 1', 'blue')]
+      book = Book.new(1, '2022-01-01', 'Publisher 1', 'good')
+      json_storage.books = [book]
+      label = Label.new(1, 'Label 1', 'blue')
+      label.add_item(book)
+      json_storage.labels = [label]
 
       json_storage.save_to_json
 
