@@ -3,7 +3,6 @@ require_relative 'author'
 require_relative 'item'
 require 'json'
 
-
 class App
   def initialize
     @books = []
