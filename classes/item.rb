@@ -3,7 +3,7 @@ require 'date'
 class Item
   attr_accessor :genre, :author, :label, :source, :publish_date
 
-  def initialize(genre, author, label, source, publish_date)
+  def initialize(genre = '', author = '', label = '', source = '', publish_date = '')
     @genre = genre
     @author = author
     @label = label
@@ -19,20 +19,10 @@ class Item
     @archived = true
   end
 
-  def to_h
-    {
-      genre: @genre,
-      author: @author,
-      label: @label,
-      source: @source.name,
-      publish_date: @publish_date
-    }
-  end
-
   private
 
   def can_be_archived?
     publish_date = Date.parse(@publish_date)
-    (Date.today.year - publish_date.year) >= 10
+    (Date.today.year - publish_date.year) > 10
   end
 end
