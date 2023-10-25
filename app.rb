@@ -1,10 +1,9 @@
-require_relative 'game'
-require_relative 'author'
-require_relative 'item'
 require 'json'
-require_relative 'classes/movie'
-require_relative 'classes/source'
+require './classes/game'
 require './classes/item'
+require './classes/author'
+require './classes/movie'
+require './classes/source'
 require './classes/book'
 require './classes/label'
 require './modules/book_label_storage'
@@ -18,11 +17,12 @@ class App
     @games = []
     @labels = []
     @authors = []
+    @sources = load_sources || []
     load_data
     load_from_json
   end
 
-  # added from here..................................
+  # added from here....MERSHARK...........MERSHARK...........
   def list_books
     puts 'Listing all books:'
     @books.each do |book|
@@ -78,7 +78,7 @@ class App
     save_to_json
     puts 'Book added!'
   end
-  # to here...................................................
+  # to here...........MERSHARK................................
 
   def list_music_albums
     puts 'Listing all music albums:'
@@ -90,6 +90,7 @@ class App
     # Implement code to add a music album here
   end
 
+  # added from here.............EVANS...........
   def list_movies
     puts 'Listing all movies:'
     @movies.each_with_index do |movie, index|
@@ -100,9 +101,59 @@ class App
 
   def add_movie
     puts 'Adding a movie:'
-    # Implement code to add a movie here
+    genre = prompt_user_input('Genre')
+    author = prompt_user_input('Author')
+    label = prompt_user_input('Label')
+    source_name = prompt_user_input('Source')
+    release_date = prompt_user_input('Release Date (YYYY-MM-DD)')
+    silent = prompt_user_input('Is it silent (true/false)?').downcase == 'true'
+
+    source = find_or_create_source(source_name)
+    movie = Movie.new(genre, author, label, source, release_date, silent)
+    source.add_item(movie)
+    @movies << movie
+
+    save_movies
+    save_sources
+    puts 'Movie added successfully!'
   end
 
+  def prompt_user_input(prompt)
+    print "#{prompt}: "
+    gets.chomp
+  end
+
+  def find_or_create_source(name)
+    source = @sources.find { |s| s.name == name }
+    if source.nil?
+      source = Source.new(name)
+      @sources << source
+    end
+    source
+  end
+
+  def list_sources
+    puts 'Listing all sources:'
+    @sources.each_with_index do |source, index|
+      puts "#{index + 1}. Name: #{source.name}"
+    end
+    puts ''
+  end
+
+  def add_source
+    puts 'Adding a source:'
+    print 'Name: '
+    name = gets.chomp
+
+    source = Source.new(name)
+    @sources << source
+
+    save_sources
+    puts 'Source added successfully!'
+  end
+  # to here..........EVANS...........
+
+  # added from here............Fatuma..........
   def add_game
     puts 'Enter the publish date of the game:'
     publish_date = gets.chomp
@@ -220,7 +271,9 @@ class App
       )
     end
   end
+  # t0 here................Fatuma...........
 
+  # added from here.............EVANS...........
   def save_sources
     data = @sources.map(&:to_h)
     File.write('json/sources.json', JSON.dump(data))
@@ -233,3 +286,4 @@ class App
     data.map { |source_data| Source.new(source_data['name']) }
   end
 end
+# to here.............EVANS...........
