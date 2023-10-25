@@ -1,15 +1,29 @@
-require_relative '../author'
+require 'rspec'
+require_relative '../author'  # Include the Author class or adjust the path as needed
 
 describe Author do
   let(:author) { Author.new('John', 'Doe') }
-  let(:game) { Game.new('2012-01-01', false, true, '2014-01-01', author) }
 
-  describe '#add_item' do
-    context 'when the item is a game' do
-      it 'sets the author of the game' do
-        author.add_item(game)
-        expect(game.author).to eq(author)
-      end
-    end
+  it 'has an ID within the range 1..1000' do
+    expect(author.id).to be_between(1, 1000)
+  end
+
+  it 'has a first name' do
+    expect(author.first_name).to eq('John')
+  end
+
+  it 'has a last name' do
+    expect(author.last_name).to eq('Doe')
+  end
+
+  it 'initially has an empty list of items' do
+    expect(author.items).to be_empty
+  end
+
+  it 'can add an item to its list of items' do
+    item = double('item')
+    expect(item).to receive(:author=).with(author)
+    author.add_item(item)
+    expect(author.items).to include(item)
   end
 end
