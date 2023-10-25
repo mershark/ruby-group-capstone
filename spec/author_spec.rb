@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../author'  # Include the Author class or adjust the path as needed
+require_relative '../author' # Include the Author class or adjust the path as needed
 
 describe Author do
   let(:author) { Author.new('John', 'Doe') }
