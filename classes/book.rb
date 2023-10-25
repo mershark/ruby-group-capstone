@@ -14,7 +14,7 @@ class Book < Item
   end
 
   def can_be_archived?
-    super || bad_cover_state
+    super || poor_cover_state
   end
 
   def to_h
