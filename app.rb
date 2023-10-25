@@ -1,23 +1,79 @@
+require './classes/item' # added this.............................
+require './classes/book' # added this.............................
+require './classes/label' # added this.............................
 require 'json'
+require './modules/book_label_storage' # added this.............................
 
 class App
+  include JsonStorage # added this.............................
   def initialize
     # Initialize collections for various item types
     @books = []
     @music_albums = []
     @movies = []
     @games = []
+    @labels = [] # added this.............................
+
+    load_from_json # added this..............................
   end
 
+  # added from here..................................
   def list_books
     puts 'Listing all books:'
-    # Implement code to list books here
+    @books.each do |book|
+      puts "Title: #{book.title}"
+      puts "Publisher: #{book.publisher}"
+      puts "Cover State: #{book.cover_state}"
+      puts "Published Date: #{book.publish_date}"
+      puts "Archived: #{book.archived}"
+      puts "ID: #{book.id}"
+      puts '--------'
+    end
+  end
+
+  def list_labels
+    puts 'Listing all labels:'
+    @labels.each do |label|
+      puts "Title: #{label.title}"
+      puts "Color: #{label.color}"
+      puts 'Items: '
+      label.items.each do |item|
+        puts "  Title: #{item.title}"
+        puts "  ID: #{item.id}"
+      end
+      puts '--------'
+    end
   end
 
   def add_book
     puts 'Adding a book:'
-    # Implement code to add a book here
+    puts 'Enter the title: '
+    title = gets.chomp
+    puts 'Enter the author:'
+    author = gets.chomp
+    puts 'Enter the publisher: '
+    publisher = gets.chomp
+    puts 'Enter the cover state (e.g., good, bad): '
+    cover_state = gets.chomp
+    puts 'Enter the published date (yyyy-mm-dd): '
+    publish_date = gets.chomp
+
+    book_id = rand(1000)
+
+    # Create a new book instance
+    new_book = Book.new(book_id, title, author, publish_date, publisher, cover_state, archived: false)
+
+    label = ::Label.new('Fiction', 'blue', 'red')
+    label.add_item(new_book)
+
+    # Add the new book to the collection
+    @books << new_book
+    @labels << label
+
+    save_to_json
+    puts 'Book added!'
   end
+  # to here...................................................
 
   def list_music_albums
     puts 'Listing all music albums:'
