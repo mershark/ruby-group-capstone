@@ -46,7 +46,7 @@ class MusicList
     save_genre
   end
 
-  def save
+  def save_album
     albums = @albums.map { |album| { id: album.id, publish_date: album.publish_date, on_spotify: album.on_spotify } }
     File.write('store/music_album.json', JSON.pretty_generate(albums))
   end

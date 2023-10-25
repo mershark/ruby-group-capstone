@@ -1,4 +1,6 @@
 require 'json'
+require_relative 'classes/music_album'
+# require_relative 'genre'
 
 class App
   attr_accessor :albums, :genres
@@ -45,9 +47,64 @@ class App
     @genres << Genre.new(name)
     puts "#{name} genre created successfully"
     puts ''
-    save
+    save_album
     save_genre
   end
+
+
+  def list_all_genre
+    puts 'No genre added' if @genres.empty?
+    @genres.each { |genre| puts "Genre:  #{genre.name}" }
+    puts ''
+  end
+
+  def save_album
+    albums = @albums.map { |album| { id: album.id, publish_date: album.publish_date, on_spotify: album.on_spotify } }
+    File.write('store/music_album.json', JSON.pretty_generate(albums))
+  end
+
+  def recover_album
+    return unless File.exist?('store/music_album.json')
+
+    album_store = begin
+      JSON.parse(File.read('store/music_album.json'))
+    rescue StandardError
+      []
+    end
+    album_load = album_store.map { |music| MusicAlbum.new(music['on_spotify'], music['publish_date']) }
+    @albums.concat(album_load) unless album_load.empty?
+  end
+
+
+  def save_genre
+    genres = @genres.map { |genre| { name: genre.name } }
+    File.write('store/genre.json', JSON.pretty_generate(genres))
+  end
+
+  def recover_genre
+    return unless File.exist?('store/genre.json')
+
+    genre_store = begin
+      JSON.parse(File.read('store/genre.json'))
+    rescue StandardError
+      []
+    end
+    genre_load = genre_store.map { |genre| Genre.new(genre['name']) }
+    @genres.concat(genre_load) unless genre_load.empty?
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   def list_movies
     puts 'Listing all movies:'
