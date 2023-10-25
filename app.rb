@@ -4,8 +4,8 @@ class App
   def initialize
     # Initialize collections for various item types
     @books = []
-    @music_albums = []
-    @movies = []
+    @music_albums = recover_album || []
+    @movies = [] 
     @games = []
   end
 

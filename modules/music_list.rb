@@ -8,7 +8,7 @@ class MusicList
   def initialize
     @albums = []
     @genres = []
-    recover_data
+    recover_album
     recover_genre
   end
 
@@ -51,7 +51,7 @@ class MusicList
     File.write('store/music_album.json', JSON.pretty_generate(albums))
   end
 
-  def recover_data
+  def recover_album
     return unless File.exist?('store/music_album.json')
 
     album_store = begin
