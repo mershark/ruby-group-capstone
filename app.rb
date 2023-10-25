@@ -5,7 +5,8 @@ class App
   def initialize
     # Initialize collections for various item types
     @books = []
-    @music_albums = recover_album || []
+    @albums = recover_album || []
+    @genres =  recover_genre || [] 
     @movies = [] 
     @games = []
   end
@@ -20,7 +21,7 @@ class App
     # Implement code to add a book here
   end
 
-  def list_music_albums
+  def list_all_music_albums
     puts 'Listing all music albums:'
     # Implement code to list music albums here
   end
