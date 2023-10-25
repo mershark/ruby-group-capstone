@@ -19,10 +19,20 @@ class Item
     @archived = true
   end
 
+  def to_h
+    {
+      genre: @genre,
+      author: @author,
+      label: @label,
+      source: @source.name,
+      publish_date: @publish_date
+    }
+  end
+
   private
 
   def can_be_archived?
     publish_date = Date.parse(@publish_date)
-    (Date.today.year - publish_date.year) > 10
+    (Date.today.year - publish_date.year) >= 10
   end
 end

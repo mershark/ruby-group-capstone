@@ -1,0 +1,34 @@
+[
+  {
+    "genre": "Horror",
+    "author": "Don Manchini",
+    "label": "Bear",
+    "source": "Prime Video",
+    "publish_date": "2022-01-20",
+    "silent": false
+  },
+  {
+    "genre": "Fiction",
+    "author": "John Doe",
+    "label": "sample Label",
+    "source": "Sample sorce",
+    "publish_date": "2016-12-12",
+    "silent": false
+  },
+  {
+    "genre": "Drama",
+    "author": "Alice Smith",
+    "label": "Movie Label",
+    "source": "Online Store",
+    "publish_date": "2015-10-10",
+    "silent": false
+  },
+  {
+    "genre": "Drama",
+    "author": "John Smith",
+    "label": "Movie label",
+    "source": "Lookmovie2.to",
+    "publish_date": "2021-02-01",
+    "silent": false
+  }
+]
