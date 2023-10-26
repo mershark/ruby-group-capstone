@@ -1,1 +1,1 @@
-[{"id":1,"title":"Label 1","color":"blue","items":[{"id":1}]}]
+[{"id":null,"title":"Label 1","color":"blue","items":[{"id":1,"title":null,"author":null,"publish_date":"2022-01-01","publisher":"Publisher 1","cover_state":"good","archived":false}]},{"id":null,"title":"gift","color":"blule","items":[{"id":162,"title":null,"author":null,"publish_date":"1999-10-10","publisher":"Amina","cover_state":"good","archived":false}]}]

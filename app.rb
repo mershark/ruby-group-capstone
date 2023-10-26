@@ -155,7 +155,7 @@ class App
 
   # added from here............Fatuma..........
   def add_game
-    puts 'Enter the publish date of the game:'
+    puts 'Enter the publish date of the game (e.g., yyyy-mm-dd):'
     publish_date = gets.chomp
 
     puts 'Is the game archived? (true/false):'
@@ -164,10 +164,10 @@ class App
     puts 'Is the game multiplayer? (true/false):'
     multiplayer = gets.chomp.downcase == 'true'
 
-    puts 'Enter the last played at date of the game:'
+    puts 'Enter the last played at date of the game (e.g., yyyy-mm-dd):'
     last_played_at = gets.chomp
 
-    puts 'Enter the author name:'
+    puts 'Enter the author name (e.g., John Doe):'
     author_name = gets.chomp
     first_name, last_name = author_name.split
     author = Author.new(first_name, last_name) # Create a new Author object
