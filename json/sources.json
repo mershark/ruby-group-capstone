@@ -1,15 +1,1 @@
-[
-  {
-    "name": "Lookmovie2.to",
-    "items": [
-      {
-        "genre": "Drama",
-        "author": "John Smith",
-        "label": "Movie label",
-        "source": "Lookmovie2.to",
-        "publish_date": "2021-02-01",
-        "silent": false
-      }
-    ]
-  }
-]
+[{"name":"Lookmovie2.to","items":[]},{"name":"soooooo","items":[]},{"name":"Camp","items":[{"genre":null,"author":null,"label":null,"source":"Camp","publish_date":null,"silent":false}]}]

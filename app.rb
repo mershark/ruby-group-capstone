@@ -1,29 +1,84 @@
-require_relative 'game'
-require_relative 'author'
-require_relative 'item'
 require 'json'
-require_relative 'classes/movie'
-require_relative 'classes/source'
+require './classes/game'
+require './classes/item'
+require './classes/author'
+require './classes/movie'
+require './classes/source'
+require './classes/book'
+require './classes/label'
+require './modules/book_label_storage'
 
 class App
+  include JsonStorage
   def initialize
     @books = []
     @music_albums = []
     @movies = load_movies || []
     @games = []
+    @labels = []
     @authors = []
+    @sources = load_sources || []
     load_data
+    load_from_json
   end
 
+  # added from here....MERSHARK...........MERSHARK...........
   def list_books
     puts 'Listing all books:'
-    # Implement code to list books here
+    @books.each do |book|
+      puts "Title: #{book.title}"
+      puts "Publisher: #{book.publisher}"
+      puts "Cover State: #{book.cover_state}"
+      puts "Published Date: #{book.publish_date}"
+      puts "Archived: #{book.archived}"
+      puts "ID: #{book.id}"
+      puts '--------'
+    end
+  end
+
+  def list_labels
+    puts 'Listing all labels:'
+    @labels.each do |label|
+      puts "Title: #{label.title}"
+      puts "Color: #{label.color}"
+      puts 'Items: '
+      label.items.each do |item|
+        puts "  Publisher: #{item.publisher}"
+        puts "  ID: #{item.id}"
+      end
+      puts '--------'
+    end
   end
 
   def add_book
     puts 'Adding a book:'
-    # Implement code to add a book here
+    puts 'Enter the publisher: '
+    publisher = gets.chomp
+    puts 'Enter the cover state (e.g., good, bad): '
+    cover_state = gets.chomp
+    puts 'Enter the published date (yyyy-mm-dd): '
+    publish_date = gets.chomp
+    puts 'Enter label title (e.g. gift, new): '
+    label_title = gets.chomp
+    puts 'Enter label color (e.g. blue, red): '
+    label_color = gets.chomp
+
+    book_id = rand(1000)
+
+    # Create a new book instance
+    new_book = Book.new(book_id, publish_date, publisher, cover_state, archived: false)
+
+    label = Label.new(rand(1000), label_title, label_color)
+    label.add_item(new_book)
+
+    # Add the new book to the collection
+    @books << new_book
+    @labels << label
+
+    save_to_json
+    puts 'Book added!'
   end
+  # to here...........MERSHARK................................
 
   def list_music_albums
     puts 'Listing all music albums:'
@@ -35,6 +90,7 @@ class App
     # Implement code to add a music album here
   end
 
+  # added from here.............EVANS...........
   def list_movies
     puts 'Listing all movies:'
     @movies.each_with_index do |movie, index|
@@ -45,11 +101,61 @@ class App
 
   def add_movie
     puts 'Adding a movie:'
-    # Implement code to add a movie here
+    genre = prompt_user_input('Genre')
+    author = prompt_user_input('Author')
+    label = prompt_user_input('Label')
+    source_name = prompt_user_input('Source')
+    release_date = prompt_user_input('Release Date (YYYY-MM-DD)')
+    silent = prompt_user_input('Is it silent (true/false)?').downcase == 'true'
+
+    source = find_or_create_source(source_name)
+    movie = Movie.new(genre, author, label, source, release_date, silent)
+    source.add_item(movie)
+    @movies << movie
+
+    save_movies
+    save_sources
+    puts 'Movie added successfully!'
   end
 
+  def prompt_user_input(prompt)
+    print "#{prompt}: "
+    gets.chomp
+  end
+
+  def find_or_create_source(name)
+    source = @sources.find { |s| s.name == name }
+    if source.nil?
+      source = Source.new(name)
+      @sources << source
+    end
+    source
+  end
+
+  def list_sources
+    puts 'Listing all sources:'
+    @sources.each_with_index do |source, index|
+      puts "#{index + 1}. Name: #{source.name}"
+    end
+    puts ''
+  end
+
+  def add_source
+    puts 'Adding a source:'
+    print 'Name: '
+    name = gets.chomp
+
+    source = Source.new(name)
+    @sources << source
+
+    save_sources
+    puts 'Source added successfully!'
+  end
+  # to here..........EVANS...........
+
+  # added from here............Fatuma..........
   def add_game
-    puts 'Enter the publish date of the game:'
+    puts 'Enter the publish date of the game (e.g., yyyy-mm-dd):'
     publish_date = gets.chomp
 
     puts 'Is the game archived? (true/false):'
@@ -58,10 +164,10 @@ class App
     puts 'Is the game multiplayer? (true/false):'
     multiplayer = gets.chomp.downcase == 'true'
 
-    puts 'Enter the last played at date of the game:'
+    puts 'Enter the last played at date of the game (e.g., yyyy-mm-dd):'
     last_played_at = gets.chomp
 
-    puts 'Enter the author name:'
+    puts 'Enter the author name (e.g., John Doe):'
     author_name = gets.chomp
     first_name, last_name = author_name.split
     author = Author.new(first_name, last_name) # Create a new Author object
@@ -165,7 +271,9 @@ class App
       )
     end
   end
+  # t0 here................Fatuma...........
 
+  # added from here.............EVANS...........
   def save_sources
     data = @sources.map(&:to_h)
     File.write('json/sources.json', JSON.dump(data))
@@ -178,3 +286,4 @@ class App
     data.map { |source_data| Source.new(source_data['name']) }
   end
 end
+# to here.............EVANS...........

@@ -1,4 +1,4 @@
-require_relative '../game'
+require_relative '../classes/game'
 describe Game do
   let(:game) { Game.new(publish_date, archived, multiplayer, last_played_at, author) }
   let(:publish_date) { '2012-01-01' }
