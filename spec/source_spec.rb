@@ -14,37 +14,29 @@ describe Source do
     end
 
     it 'initializes a source with an empty list of items' do
-      expect(source.instance_variable_get(:@items)).to be_empty
+      expect(source.instance_variable_get(:@items)).to eq([])
     end
   end
 
   describe '#add_item' do
+    let(:item) { Item.new('Genre', '2020-01-01') }
+
     it 'adds an item to the source' do
-      item = Item.new('Genre 1', 'Author 1', 'Label 1', source, '2020-01-01')
       source.add_item(item)
-      expect(source.instance_variable_get(:@items)).to include(item)
+      expect(source.instance_variable_get(:@items)).to eq([item])
     end
 
     it 'sets the source of the item to itself' do
-      item = Item.new('Genre 2', 'Author 2', 'Label 2', source, '2021-02-02')
       source.add_item(item)
       expect(item.source).to eq(source)
     end
   end
 
   describe '#to_h' do
+    let(:expected) { { name: 'Sample Source', items: [] } }
+
     it 'returns a hash representation of the source' do
-      item1 = Item.new('Genre 3', 'Author 3', 'Label 3', source, '2019-03-03')
-      item2 = Item.new('Genre 4', 'Author 4', 'Label 4', source, '2018-04-04')
-      source.add_item(item1)
-      source.add_item(item2)
-
-      expected_hash = {
-        name: 'Sample Source',
-        items: [item1.to_h, item2.to_h]
-      }
-
-      expect(source.to_h).to eq(expected_hash)
+      expect(source.to_h).to eq(expected)
     end
   end
 

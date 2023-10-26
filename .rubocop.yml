@@ -16,12 +16,10 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Max: 50
 Metrics/ClassLength:
-  Enabled: false
+  Max: 300
 Metrics/BlockLength:
   IgnoredMethods: ['describe']
   Max: 30
-
-
 Style/Documentation:
   Enabled: false
 Style/ClassAndModuleChildren:

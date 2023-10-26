@@ -4,8 +4,8 @@ class Movie < Item
   attr_accessor :silent
 
   def initialize(*args)
-    genre, author, label, source, publish_date, silent = args
-    super(genre, author, label, source, publish_date)
+    _genre, _author, _label, _source, _publish_date, _silent = args
+    super(publish_date, false)
     @silent = silent || false
   end
 
