@@ -16,6 +16,7 @@ require_relative 'modules/music_genre_storage'
 class App
   include JsonStorage
   attr_accessor :albums, :genres
+
   def initialize
     @books = []
     @albums = []
@@ -30,7 +31,7 @@ class App
     recover_genre
     recover_album
   end
-  
+
   # added from here....MERSHARK...........MERSHARK...........
   def list_books
     puts 'Listing all books:'
