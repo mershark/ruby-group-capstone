@@ -13,6 +13,16 @@ class Item
     @id = Random.rand(1..1000)
   end
 
+  def to_h
+    {
+      genre: @genre,
+      author: @author,
+      label: @label,
+      source: @source.name,
+      publish_date: @publish_date
+    }
+  end
+
   def move_to_archive
     return unless can_be_archived?
 
