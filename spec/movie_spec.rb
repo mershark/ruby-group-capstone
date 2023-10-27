@@ -8,16 +8,16 @@ describe Movie do
   let(:publish_date) { '2015-05-20' }
   let(:silent) { true }
 
-  subject(:movie) { Movie.new(publish_date, silent, genre, author, label, source) }
+  subject(:movie) { Movie.new(genre, author, label, source, publish_date, silent) }
 
   describe '#initialize' do
     it 'sets the attributes correctly' do
-      expect(movie.genre).to eq(nil)
-      expect(movie.author).to eq(nil)
-      expect(movie.label).to eq(nil)
-      expect(movie.source).to eq(nil)
-      expect(movie.publish_date).to eq(nil)
-      expect(movie.silent).to eq(false)
+      expect(movie.genre).to eq(genre)
+      expect(movie.author).to eq(author)
+      expect(movie.label).to eq(label)
+      expect(movie.source).to eq(source)
+      expect(movie.publish_date).to eq(publish_date)
+      expect(movie.silent).to eq(silent)
       expect(movie.instance_variable_get(:@archived)).to be_falsey
       expect(movie.instance_variable_get(:@id)).to be_an(Integer)
     end
@@ -26,12 +26,12 @@ describe Movie do
   describe '#to_h' do
     let(:expected_hash) do
       {
-        'genre' => nil,
-        'author' => nil,
-        'label' => nil,
-        'source' => nil,
-        'publish_date' => nil,
-        'silent' => false
+        'genre' => genre,
+        'author' => author,
+        'label' => label,
+        'source' => source,
+        'publish_date' => publish_date,
+        'silent' => silent
       }
     end
 

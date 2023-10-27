@@ -7,14 +7,15 @@ describe Item do
   let(:label) { 'Sample Label' }
   let(:source) { 'Sample Source' }
   let(:publish_date) { '2010-01-15' }
-  subject(:item) { Item.new(publish_date, false) }
+
+  subject(:item) { Item.new(genre, author, label, source, publish_date, false) }
 
   describe '#initialize' do
     it 'sets the attributes correctly' do
-      expect(item.genre).to be_nil
-      expect(item.author).to be_nil
-      expect(item.label).to be_nil
-      expect(item.source).to be_nil
+      expect(item.genre).to eq(genre)
+      expect(item.author).to eq(author)
+      expect(item.label).to eq(label)
+      expect(item.source).to eq(source)
       expect(item.publish_date).to eq(publish_date)
       expect(item.instance_variable_get(:@archived)).to be_falsey
       expect(item.instance_variable_get(:@id)).to be_an(Integer)

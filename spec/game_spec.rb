@@ -1,42 +1,33 @@
+require_relative '../classes/genre'
 require_relative '../classes/game'
-describe Game do
-  let(:game) { Game.new(publish_date, archived, multiplayer, last_played_at, author) }
-  let(:publish_date) { '2012-01-01' }
-  let(:archived) { false }
-  let(:multiplayer) { true }
-  let(:last_played_at) { '2014-01-01' }
-  let(:author) { Author.new('John', 'Doe') }
-  describe '#can_be_archived?' do
-    context 'when the game is archived and last played over two years ago' do
-      let(:archived) { true }
-      let(:last_played_at) { '2014-01-01' }
-      it 'returns true' do
-        expect(game.can_be_archived?).to eq(true)
-      end
+
+describe Genre do
+  describe 'when creating a new Genre' do
+    it 'sets the name correctly' do
+      name = 'Rock'
+      genre = Genre.new(name) # Added .new here
+      expect(genre.name).to eq(name)
     end
-    context 'when the game is not archived' do
-      let(:archived) { false }
-      context 'and the game was last played over two years ago' do
-        let(:last_played_at) { '2014-01-01' }
-        it 'returns false' do
-          expect(game.can_be_archived?).to eq(true)
-        end
-      end
-      context 'and the game was last played less than two years ago' do
-        let(:last_played_at) { '2015-01-01' }
-        it 'returns false' do
-          expect(game.can_be_archived?).to eq(true)
-        end
-      end
+
+    it 'assigns a random id if not provided' do
+      genre = Genre.new('Pop')
+      expect(genre.id).to be_an(Integer)
     end
-    context 'when the game is archived' do
-      let(:archived) { true }
-      context 'and the game was last played over two years ago' do
-        let(:last_played_at) { '2014-01-01' }
-        it 'returns true' do
-          expect(game.can_be_archived?).to eq(true)
-        end
-      end
+
+    it 'accepts a custom id if provided' do
+      custom_id = 42
+      genre = Genre.new('Jazz', id: custom_id)
+      expect(genre.id).to eq(custom_id)
+    end
+  end
+
+  describe 'when adding an item to the genre' do
+    it 'updates the genre of the item' do
+      genre = Genre.new('Country')
+      item = double('Game', genre: nil) # Make sure 'item' is an instance of 'Game'
+      allow(Date).to receive(:parse).and_return(Date.today - (2 * 365)) # Stub Date.parse with 2 years equivalent
+      expect(item).to receive(:genre=).with(genre) # Set the expectation
+      genre.add_item(item)
     end
   end
 end

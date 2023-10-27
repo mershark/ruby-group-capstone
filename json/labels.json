@@ -1,1 +1,1 @@
-[{"id":null,"title":"Label 1","color":"blue","items":[{"id":1,"title":null,"author":null,"publish_date":"2022-01-01","publisher":"Publisher 1","cover_state":"good","archived":false}]},{"id":null,"title":"new","color":"blue","items":[{"id":518,"title":null,"author":null,"publish_date":"2030-02-02","publisher":"King Longhorn","cover_state":"good","archived":false}]}]
+[{"id":1,"title":"Label 1","color":"blue","items":[{"id":1}]}]
