@@ -1,47 +1,57 @@
 [
   {
-    "id": 931,
-    "publish_date": "2020-11-11",
+    "id": 812,
+    "publish_date": null,
     "on_spotify": "false"
   },
   {
-    "id": 109,
-    "publish_date": "2020-11-11",
+    "id": 255,
+    "publish_date": null,
     "on_spotify": "false"
   },
   {
-    "id": 429,
-    "publish_date": "1992-02-11",
+    "id": 918,
+    "publish_date": null,
     "on_spotify": "true"
   },
   {
-    "id": 215,
-    "publish_date": "1980-04-23",
+    "id": 808,
+    "publish_date": null,
     "on_spotify": "true"
   },
   {
-    "id": 328,
-    "publish_date": "2010-10-12",
+    "id": 578,
+    "publish_date": null,
     "on_spotify": "true"
   },
   {
-    "id": 940,
-    "publish_date": "1000-12-12",
+    "id": 934,
+    "publish_date": null,
     "on_spotify": "true"
   },
   {
-    "id": 723,
-    "publish_date": "2020-02-03",
+    "id": 35,
+    "publish_date": null,
     "on_spotify": "false"
   },
   {
-    "id": 654,
-    "publish_date": "2020-11-11",
+    "id": 296,
+    "publish_date": null,
     "on_spotify": "false"
   },
   {
-    "id": 392,
-    "publish_date": "2020-10-10",
+    "id": 964,
+    "publish_date": null,
+    "on_spotify": "true"
+  },
+  {
+    "id": 696,
+    "publish_date": null,
+    "on_spotify": "false"
+  },
+  {
+    "id": 560,
+    "publish_date": null,
     "on_spotify": "true"
   }
 ]
